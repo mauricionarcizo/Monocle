@@ -38,6 +38,8 @@ def get_stats():
     last_date = 0
     pokemon_names = POKEMON
     for fort in forts:
+        pokemon_id = fort['guard_pokemon_id']
+        print(pokemon_id)
         if fort['last_modified'] > last_date:
             last_date = fort['last_modified']
         team = fort['team']

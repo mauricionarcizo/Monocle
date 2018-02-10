@@ -183,6 +183,7 @@ def sighting_to_marker(pokemon, names=POKEMON, moves=MOVES, damage=DAMAGE, trash
 
 @app.listener('before_server_start')
 async def register_db(app, loop):
+    print(conf)
     app.pool = await create_pool(**conf.DB, loop=loop)
 
 

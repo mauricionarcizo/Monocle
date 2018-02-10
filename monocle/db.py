@@ -1083,8 +1083,18 @@ def _get_forts(session):
         )
     ''').fetchall()
 
-get_forts = _get_forts_sqlite if DB_TYPE == 'sqlite' else _get_forts
+def _get_forts_defenders(session, fort_id):
+    return session.execute('''
+        select gd.owner_name as defender, 
+        gd.pokemon_id
+        from monocle.gym_defenders as gd
+        join monocle.forts as f
+        on gd.fort_id = f.id
+        where f.id = 
+    '''+ str(fort_id)).fetchall()
 
+get_forts = _get_forts_sqlite if DB_TYPE == 'sqlite' else _get_forts
+get_forts_defenders = _get_forts_defenders
 
 def get_session_stats(session):
     query = session.query(func.min(Sighting.expire_timestamp),

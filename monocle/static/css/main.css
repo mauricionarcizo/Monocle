@@ -130,7 +130,7 @@
         width: 1%;
     }
 }
-.remaining_text, .remaining_text_raids {
+.remaining_text, .remaining_text_raids{
     border-radius: 25px;
     background-color: black;
     text-align: center;
@@ -141,6 +141,18 @@
     color: white;
     width: 100%;
     visibility: hidden;
+}
+
+.iv_poke {
+    border-radius: 25px;
+    background-color: black;
+    text-align: center;
+    background-color:black;
+    font-size: 12px;
+    margin: -15px 0 0 0;
+    padding: 0;
+    color: white;
+    width: 150%;
 }
 
 .pokemarker {

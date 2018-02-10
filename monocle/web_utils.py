@@ -4,7 +4,7 @@ from multiprocessing.managers import BaseManager, RemoteError
 from time import time
 
 from monocle import sanitized as conf
-from monocle.db import get_forts, Pokestop, session_scope, Sighting, Spawnpoint, Raid, Fort, FortSighting
+from monocle.db import get_forts_defenders, get_forts, Pokestop, session_scope, Sighting, Spawnpoint, Raid, Fort, FortSighting
 from monocle.weather import Weather
 from monocle.utils import Units, get_address, dump_pickle, load_pickle
 from monocle.names import DAMAGE, MOVES, POKEMON
@@ -213,9 +213,17 @@ def get_gym_markers(names=POKEMON):
         'slots_available': fort['slots_available'],
         'last_modified': fort['last_modified'],
         'gym_name': fort['name'],
-        'img_url': fort['url']
+        'img_url': fort['url'],
+        'defenders': _get_defenders(session, fort['fort_id'])
     } for fort in forts]
 
+def _get_defenders(session, fort_id, names=POKEMON):
+    defenders = get_forts_defenders(session, fort_id)
+    return [{
+        'defender': defender[0],
+        'pokemon_id': defender[1],
+        'pokemon_name':names[defender[1]]
+    } for defender in defenders]
 
 def get_spawnpoint_markers():
     with session_scope() as session:

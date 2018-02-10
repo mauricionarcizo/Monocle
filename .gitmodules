@@ -2,3 +2,5 @@
 	path = monocle/static/monocle-icons
 	url = https://github.com/ZeChrales/monocle-icons.git
 	branch = larger-outlined
+[submodule "monocle-icons"]
+	url = https://github.com/ZeChrales/monocle-icons.git
